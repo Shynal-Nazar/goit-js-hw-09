@@ -33,7 +33,7 @@ const options = {
       Notiflix.Notify.failure('Please choose a date in the future');
     } else {
       refEl.btnStart.removeAttribute('disabled');
-      console.log(selectedDates);
+      console.log(selectedDate);
     }
   },
 };
@@ -43,6 +43,7 @@ flatpickr(refEl.myInput, options);
 function getButtonStart() {
   timerId = setInterval(() => {
     const targetDate = selectedDate - new Date();
+    // console.log(targetDate);
     refEl.btnStart.setAttribute('disabled', 'disabled');
     stopTimeOut(targetDate);
     const convertObj = convertMs(targetDate);
@@ -58,11 +59,11 @@ function stopTimeOut(targetDate) {
   }
 }
 
-function showDate(time) {
-  refEl.dataDays.textContent = addZero(time.days);
-  refEl.dataHours.textContent = addZero(time.hours);
-  refEl.dataMinutes.textContent = addZero(time.minutes);
-  refEl.dataSeconds.textContent = addZero(time.seconds);
+function showDate(convertObj) {
+  refEl.dataDays.textContent = addZero(convertObj.days);
+  refEl.dataHours.textContent = addZero(convertObj.hours);
+  refEl.dataMinutes.textContent = addZero(convertObj.minutes);
+  refEl.dataSeconds.textContent = addZero(convertObj.seconds);
 }
 
 function addZero(value) {
